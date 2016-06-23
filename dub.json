@@ -1,0 +1,10 @@
+{
+	"name": "nukleard",
+	"authors": [
+		"mogu"
+	],
+	"description": "D interface of nukclear",
+	"copyright": "Copyright © 2016, mogu",
+	"license": "MIT",
+    "targetType": "staticLibrary"
+}
