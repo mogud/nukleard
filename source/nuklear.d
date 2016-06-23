@@ -1073,8 +1073,8 @@ struct nk_text_undo_record {
 };
 
 struct nk_text_undo_state {
-   nk_text_undo_record undo_rec[NK_TEXTEDIT_UNDOSTATECOUNT];
-   nk_rune undo_char[NK_TEXTEDIT_UNDOCHARCOUNT];
+   nk_text_undo_record[NK_TEXTEDIT_UNDOSTATECOUNT] undo_rec;
+   nk_rune[NK_TEXTEDIT_UNDOCHARCOUNT] undo_char;
    short undo_point;
    short redo_point;
    short undo_char_point;
@@ -1251,7 +1251,7 @@ struct nk_font_config {
     /* align very character to pixel boundary (if true set oversample (1,1)) */
     ubyte oversample_v, oversample_h;
     /* rasterize at hight quality for sub-pixel position */
-    ubyte padding[3];
+    ubyte[3] padding;
 
     float size;
     /* baked pixel height of the font */
@@ -1435,7 +1435,7 @@ struct nk_command_curve {
     ushort line_thickness;
     nk_vec2i begin;
     nk_vec2i end;
-    nk_vec2i ctrl[2];
+    nk_vec2i[2] ctrl;
     nk_color color;
 };
 
@@ -1503,7 +1503,7 @@ struct nk_command_arc {
     short cx, cy;
     ushort r;
     ushort line_thickness;
-    float a[2];
+    float[2] a;
     nk_color color;
 };
 
@@ -1511,7 +1511,7 @@ struct nk_command_arc_filled {
     nk_command header;
     short cx, cy;
     ushort r;
-    float a[2];
+    float[2] a;
     nk_color color;
 };
 
@@ -1520,14 +1520,14 @@ struct nk_command_polygon {
     nk_color color;
     ushort line_thickness;
     ushort point_count;
-    nk_vec2i points[1];
+    nk_vec2i[1] points;
 };
 
 struct nk_command_polygon_filled {
     nk_command header;
     nk_color color;
     ushort point_count;
-    nk_vec2i points[1];
+    nk_vec2i[1] points;
 };
 
 struct nk_command_polyline {
@@ -1535,7 +1535,7 @@ struct nk_command_polyline {
     nk_color color;
     ushort line_thickness;
     ushort point_count;
-    nk_vec2i points[1];
+    nk_vec2i[1] points;
 };
 
 struct nk_command_image {
@@ -1554,7 +1554,7 @@ struct nk_command_text {
     ushort w, h;
     float height;
     int length;
-    char string[1];
+    char[1] string_;
 };
 
 enum nk_command_clipping {
@@ -1624,7 +1624,7 @@ struct nk_key {
 
 struct nk_keyboard {
     nk_key[nk_keys.NK_KEY_MAX] keys;
-    char text[NK_INPUT_MAX];
+    char[NK_INPUT_MAX] text;
     int text_len;
 };
 
@@ -2326,7 +2326,7 @@ struct nk_edit_state {
 
 struct nk_property_state {
     int active, prev;
-    char buffer[NK_MAX_NUMBER_BUFFER];
+    char[NK_MAX_NUMBER_BUFFER] buffer;
     int length;
     int cursor;
     nk_hash name;
